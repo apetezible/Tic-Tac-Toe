@@ -1,23 +1,21 @@
-# Tic Tac Toe
+# Tres en Raya
 
 ## Abstract
-I hope you know the popular game Tic Tac Toe. If you don't, It is required for you to go and google it. This project is about making this game drawing directly on the Canvas, there are some elements I had to add from external media (sounds, pictures and animation). For the brain of the game, I developed a JavaScript Decision Tree.
+Espero conozcas el popular juego Tres en Raya. Si no, se te recomienda que lo googlees. Este proyecto trata sobre hacer este juego directamente en el Canvas, hay algunos elementos que tuve que agregar de medios externos (sonidos, imágenes y animación). Para el cerebro del juego, desarrollé un Árbol de Desiciones en JavaScript.
+## Introducción
+Una libre elección de un Proyecto para uno de los varios finales de mi Programación Básica, me llevó a esta idea: Conteniendo un Árbol de Desiciones un concepto de Diseño y mucho uso de Funciones y Ciclos Lógicos usados para dibujar en el Canvas. Consider esto como un proyecto conveniente.
 
-## Introduction
-A free choice of a Project for one of the various endings of my Instruction in Basic Coding let me to this idea: Containing a Decision Tree, a conception of Design and many uses of Functions and Logic Cycles used to draw on the Canvas. I consider this as a convenient project.
+## El juego
+Pienso que la justa elección de un primer jugadir es un problema importante, el primero que va a jugar en el tablero es un importante elemento que merece una copiosa atención. La solución que propongo es lanzar unos dados, el ganador es el primer jugador.
 
-## The Game
-I think the fair election of the first player is an important issue, the one who is going to play first on the board is an important element which deserves plenty of attention. The solution I purpose is throwing dices, and the winner is the first player.
+El primer jugador usará la Cruz y el segundo usará el Círculo.
 
-The first player will use the Cross and the second will use the Circle.
+## Métodos
+Hay dos métodos principales presentes en este código. Puedes estudiar los otros presentes en el código si quieres.
 
-## Methods
+### - Lanzando el Dado
+Hay dos dados y los dos deben tener un número aleatorio diferente. El concepto determinado más cercano a número aleatorio que vino a mi mente fue la función Random predefinida en JavaScript.
 
-There are two main Methods present on this code. You can study the other present at the code if you want.
-
-### - Throwing the Dice
-There are two dices and everyone has to have a different random number. The closest determined concept to random number it came to my mind was the Random predefined function on JavaScript.
-
-### - The Machine Decision Maker
-The way I thought for the machine was to play as a defensive way, If it has to start first it will choose a "random" position. If the game has come to a dead-end, the machine will choose a "random" position.
-If you are a good player the expected result is a draw.
+### - El Machine Decision Maker
+La forma en la que pensé por la máquina fue jugar en una manera defensiva. Si esta tiene que empezar, eligirá una posición "aleatoria". Si el juego ha llegado a una situación que requiere una desición aleatoria, la máquina eligirá una posición "aleatoria".
+Si eres un buen jugador, el resultado esperado es un empate.
