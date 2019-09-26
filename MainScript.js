@@ -1733,9 +1733,18 @@ function drawRotated(PapelPlano, image){
   PapelPlano.restore();
 }
 
-var Line = {url:"Marking-a-Line.gif"};
-Line.objeto=new Image();
-Line.objeto.src=Line.url;
+function builder (Source){
+  var PhotonsCollection = new Image ();
+  PhotonsCollection.src = Source;
+  return PhotonsCollection;
+}
+
+var MarkingALine = [];
+
+var Animations = [];
+
+
+function
 
 function drawLine (Color, X0, Y0, Xf, Yf,Lwidth, Lienzo){
   Lienzo.beginPath();
