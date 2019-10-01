@@ -1,4 +1,3 @@
-//By the moment I don't know how to draw in the Cavnas a .gif}
 //First Line (((5/42)"Half of a Casilla")+((1/7)"Horizontal Canvas - Playground"))(5/42)
 
 var Turno = false;
@@ -1733,7 +1732,7 @@ function drawRotated(PapelPlano, image){
   PapelPlano.restore();
 }
 
-function builder (Source){
+function builder(Source){
   var PhotonsCollection = new Image ();
   PhotonsCollection.src = Source;
   return PhotonsCollection;
@@ -1741,7 +1740,61 @@ function builder (Source){
 
 var MarkingALine = [];
 
+MarkingALine.push(builder("anims/MarkingALine/frame_00_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_01_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_02_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_03_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_04_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_05_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_06_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_07_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_08_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_09_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_10_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_11_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_12_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_13_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_14_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_15_delay-0.04s.png"));
+MarkingALine.push(builder("anims/MarkingALine/frame_16_delay-4.33s.png"));
+
+var LoadedFrames = 0;
+var Strike = 0;
+while (Strike < 17){
+  MarkingALine[Strike].addEventListener("load", loader);
+  Strike ++;
+}
+
+
 var Animations = [];
+Animations.push(MarkingALine);
+
+function loader(){
+  LoadedFrames = LoadedFrames+1;
+}
+
+function Animate (Code, X, Y){
+  while(LoadedFrames != Animations[Code].length){
+  console.log(".");
+  console.log("..");
+  console.log("...");
+  console.log("....");
+  console.log(".....");
+  console.log("....");
+  console.log("...");
+  console.log("..");
+  console.log(".");
+  }
+  var Counter = 0;
+  while (Counter<=Animations[Code].length){
+    setTimeout(framing, 0);
+  }
+}
+
+function framing(){
+  PapelPlano.drawImage(Animations[Code][Counter], X, Y);
+  Counter ++;
+}
 
 
 function drawLine (Color, X0, Y0, Xf, Yf,Lwidth, Lienzo){
