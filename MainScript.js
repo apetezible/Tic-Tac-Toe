@@ -1744,8 +1744,6 @@ var MarkingALine = [];
 var Animations = [];
 
 
-function
-
 function drawLine (Color, X0, Y0, Xf, Yf,Lwidth, Lienzo){
   Lienzo.beginPath();
   Lienzo.strokeStyle = Color;
