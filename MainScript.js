@@ -1785,15 +1785,20 @@ function Animate (Code, X, Y){
   console.log("..");
   console.log(".");
   }
-  var Counter = 0;
-  while (Counter<=Animations[Code].length){
-    setTimeout(framing, 0);
-  }
-}
 
-function framing(){
-  PapelPlano.drawImage(Animations[Code][Counter], X, Y);
-  Counter ++;
+  Counter = 0;
+
+  framing(Code, X, Y);
+
+  function framing(Code, X, Y){
+    var TimeInterval = setInterval(function picturing(){
+          PapelPlano.drawImage(Animations[0][Counter], 50, 50);
+          Counter++;
+          if(Counter>=Animations[0].length){
+            clearInterval(TimeInterval);
+          }
+        }, 40);
+  }
 }
 
 
