@@ -1686,7 +1686,8 @@ function aLittleWatch (){
 function animation(Orientation){
   switch (Orientation) {
     case "h0":
-
+      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width)), ((2/21)*Lienzo.width));
+      BackgoundSounds[4].play();
       break;
     case "h1":
       break;
@@ -1773,7 +1774,7 @@ function loader(){
   LoadedFrames = LoadedFrames+1;
 }
 
-function Animate (Code, X, Y){
+function animate (Code, X, Y){
   while(LoadedFrames != Animations[Code].length){
   console.log(".");
   console.log("..");
@@ -1792,7 +1793,7 @@ function Animate (Code, X, Y){
 
   function framing(Code, X, Y){
     var TimeInterval = setInterval(function picturing(){
-          PapelPlano.drawImage(Animations[0][Counter], 50, 50);
+          PapelPlano.drawImage(Animations[Code][Counter], X, Y);
           Counter++;
           if(Counter>=Animations[0].length){
             clearInterval(TimeInterval);
