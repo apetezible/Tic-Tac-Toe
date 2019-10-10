@@ -1690,14 +1690,24 @@ function animation(Orientation){
       BackgoundSounds[4].play();
       break;
     case "h1":
+      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width)), (((2/21)*Lienzo.width)+((10/42)*Lienzo.width)));
+      BackgoundSounds[5].play();
       break;
     case "h2":
+      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width)), (((2/21)*Lienzo.width)+((20/42)*Lienzo.width)));
+      BackgoundSounds[6].play();
       break;
     case "v0":
+      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width)), ((10/294)*Lienzo.width));
+      BackgoundSounds[4].play();
       break;
     case "v1":
+      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width))+((10/42)*Lienzo.width), ((10/294)*Lienzo.width));
+      BackgoundSounds[5].play();
       break;
     case "v2":
+      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width))+((20/42)*Lienzo.width), ((10/294)*Lienzo.width));
+      BackgoundSounds[6].play();
       break;
     case "d1":
       break;
@@ -1715,22 +1725,6 @@ function aleatorio(Max, Min){
   var Resultado;
   Resultado = Math.floor (Math.random()*(Max - Min + 1)) + Min;
   return Resultado;
-}
-
-function drawRotated(PapelPlano, image){
-  PapelPlano.save();
-
-  var x = PapelPlano.width / 2;
-  var y = PapelPlano.height / 2;
-  var width = image.objeto.width;
-  var height = image.objeto.height;
-  PapelPlano.translate(x, y);
-  PapelPlano.rotate(1.5708);
-  PapelPlano.drawImage(image.objeto, -width / 2, -height / 2, width, height);
-  PapelPlano.rotate(-1.5708);
-  PapelPlano.translate(-x, -y);
-
-  PapelPlano.restore();
 }
 
 function builder(Source){
@@ -1759,32 +1753,81 @@ MarkingALine.push(builder("anims/MarkingALine/frame_14_delay-0.04s.png"));
 MarkingALine.push(builder("anims/MarkingALine/frame_15_delay-0.04s.png"));
 MarkingALine.push(builder("anims/MarkingALine/frame_16_delay-4.33s.png"));
 
-var LoadedFrames = 0;
-var Strike = 0;
-while (Strike < 17){
-  MarkingALine[Strike].addEventListener("load", loader);
-  Strike ++;
+var MarkingAVerticalLine = [];
+
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_00_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_01_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_02_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_03_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_04_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_05_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_06_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_07_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_08_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_09_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_10_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_11_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_12_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_13_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_14_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_15_delay-0.04s.png"));
+MarkingAVerticalLine.push(builder("anims/MarkingAVerticalLine/frame_16_delay-4.33s.png"));
+
+var LoadedHorizontalFrames = 0;
+var HorizontalStrike = 0;
+while (HorizontalStrike < 17){
+  MarkingALine[HorizontalStrike].addEventListener("load", loader);
+  HorizontalStrike ++;
+}
+
+var LoadedVerticalFrames = 0;
+var VerticalStrike = 0;
+while (VerticalStrike < 17){
+  MarkingAVerticalLine[VerticalStrike].addEventListener("load", vLoader);
+  VerticalStrike ++;
 }
 
 
 var Animations = [];
 Animations.push(MarkingALine);
+Animations.push(MarkingAVerticalLine);
 
 function loader(){
-  LoadedFrames = LoadedFrames+1;
+  LoadedHorizontalFrames = LoadedHorizontalFrames+1;
+}
+
+function vLoader(){
+  LoadedVerticalFrames = LoadedVerticalFrames+1;
 }
 
 function animate (Code, X, Y){
-  while(LoadedFrames != Animations[Code].length){
-  console.log(".");
-  console.log("..");
-  console.log("...");
-  console.log("....");
-  console.log(".....");
-  console.log("....");
-  console.log("...");
-  console.log("..");
-  console.log(".");
+
+  if (Code == 0){
+    while(LoadedHorizontalFrames != Animations[Code].length){
+        console.log(".");
+        console.log("..");
+        console.log("...");
+        console.log("....");
+        console.log(".....");
+        console.log("....");
+        console.log("...");
+        console.log("..");
+        console.log(".");
+    }
+  }
+
+  if (Code == 1){
+    while(LoadedVerticalFrames != Animations[Code].length){
+        console.log(".");
+        console.log("..");
+        console.log("...");
+        console.log("....");
+        console.log(".....");
+        console.log("....");
+        console.log("...");
+        console.log("..");
+        console.log(".");
+    }
   }
 
   Counter = 0;
