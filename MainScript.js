@@ -1787,10 +1787,38 @@ while (VerticalStrike < 17){
   VerticalStrike ++;
 }
 
+var MarkingADiagonalLineLeft = [];
+
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_00_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_01_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_02_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_03_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_04_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_05_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_06_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_07_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_08_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_09_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_10_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_11_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_12_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_13_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_14_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_15_delay-0.04s.png"));
+MarkingADiagonalLineLeft.push(builder("anims/MarkingADiagonalLineLeft/frame_16_delay-4.33s.png"));
+
+var LoadedDiagonalLeftFrames = 0;
+var DiagonalLeftStrike = 0;
+while (DiagonalLeftStrike < 17){
+  MarkingADiagonalLineLeft[DiagonalLeftStrike].addEventListener("load", dLLoader);
+  DiagonalLeftStrike ++;
+}
+
 
 var Animations = [];
 Animations.push(MarkingALine);
 Animations.push(MarkingAVerticalLine);
+Animations.push(MarkingADiagonalLineLeft);
 
 function loader(){
   LoadedHorizontalFrames = LoadedHorizontalFrames+1;
@@ -1798,6 +1826,10 @@ function loader(){
 
 function vLoader(){
   LoadedVerticalFrames = LoadedVerticalFrames+1;
+}
+
+function dLLoader(){
+  LoadedDiagonalLeftFrames = LoadedDiagonalLeftFrames+1;
 }
 
 function animate (Code, X, Y){
