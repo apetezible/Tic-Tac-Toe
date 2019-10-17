@@ -1710,8 +1710,12 @@ function animation(Orientation){
       BackgoundSounds[6].play();
       break;
     case "d1":
+      animate(2, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width), ((5/42)*Lienzo.width));
+      BackgoundSounds[7].play();
       break;
     case "d2":
+      animate(3, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width), ((5/42)*Lienzo.width));
+      BackgoundSounds[8].play();
       break;
     default:
 
@@ -1814,11 +1818,38 @@ while (DiagonalLeftStrike < 17){
   DiagonalLeftStrike ++;
 }
 
+var MarkingADiagonalLineRight = [];
+
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_00_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_01_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_02_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_03_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_04_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_05_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_06_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_07_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_08_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_09_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_10_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_11_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_12_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_13_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_14_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_15_delay-0.04s.png"));
+MarkingADiagonalLineRight.push(builder("anims/MarkingADiagonalLineRight/frame_16_delay-4.33s.png"));
+
+var LoadedDiagonalRightFrames = 0;
+var DiagonalRightStrike = 0;
+while (DiagonalRightStrike < 17){
+  MarkingADiagonalLineRight[DiagonalRightStrike].addEventListener("load", dRLoader);
+  DiagonalRightStrike ++;
+}
 
 var Animations = [];
 Animations.push(MarkingALine);
 Animations.push(MarkingAVerticalLine);
 Animations.push(MarkingADiagonalLineLeft);
+Animations.push(MarkingADiagonalLineRight);
 
 function loader(){
   LoadedHorizontalFrames = LoadedHorizontalFrames+1;
@@ -1830,6 +1861,10 @@ function vLoader(){
 
 function dLLoader(){
   LoadedDiagonalLeftFrames = LoadedDiagonalLeftFrames+1;
+}
+
+function dRLoader(){
+  LoadedDiagonalRightFrames = LoadedDiagonalRightFrames+1;
 }
 
 function animate (Code, X, Y){
