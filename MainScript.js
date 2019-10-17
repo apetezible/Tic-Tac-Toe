@@ -1714,7 +1714,7 @@ function animation(Orientation){
       BackgoundSounds[7].play();
       break;
     case "d2":
-      animate(3, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width), ((5/42)*Lienzo.width));
+      animate(3, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width), ((5/42)*Lienzo.width)+25);
       BackgoundSounds[8].play();
       break;
     default:
