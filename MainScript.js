@@ -1912,6 +1912,22 @@ function animate (Code, X, Y){
   }
 }
 
+function judgeDesition(Winner){
+  if (Winner == "O"){
+    if(Primero == "PC"){
+      alert("///MENSAJE DEL ÁRBITRO///\nGana el Jugador!!!")
+    }else{
+      alert("///MENSAJE DEL ÁRBITRO///\nGana el Cerebro Electrónico!!!")
+    }
+  }else{
+    if(Primero == "PC"){
+      alert("///MENSAJE DEL ÁRBITRO///\nGana el Cerebro Electrónico!!!")
+    }else{
+      alert("///MENSAJE DEL ÁRBITRO///\nGana el Jugador!!!")
+    }
+  }
+}
+
 
 function drawLine (Color, X0, Y0, Xf, Yf,Lwidth, Lienzo){
   Lienzo.beginPath();
