@@ -1,4 +1,4 @@
-//First Line (((5/42)"Half of a Casilla")+((1/7)"Horizontal Canvas - Playground"))(5/42)
+
 
 var Turno = false;
 var Ct = 0;
@@ -19,6 +19,7 @@ var Selection = 0;
 var GoodChosen = false;
 var Retorno1 = "null";
 var Stop = false;
+var Ended = false;
 
 var BigArray = new Array(0);
 
@@ -320,8 +321,13 @@ function game () {
           aLittleWatchForX();
           BigArray = aLittleWatchForX();
           bestSelectionForX();
-          Stop = true;
-          setTimeout(thinkingProcess, 3300);
+          if(Stop == false){
+            setTimeout(thinkingProcess, 3300);
+            Stop = true;
+          }
+          if(Start==false){
+            gameOver();
+          }
           function thinkingProcess(){
             drawX(Selection)
             MentalMap[Selection].Activated = false;
@@ -329,17 +335,19 @@ function game () {
             Turno = false;
             Stop = false;
             aLittleWatch();
-            if(Start==false){
-              gameOver();
+              game();
             }
-            game();
-          }
       }else{
           aLittleWatchForO();
           BigArray = aLittleWatchForO();
           bestSelectionForO();
-          Stop = true;
-          setTimeout(thinkingProcesso, 3300);
+          if (Stop == false){
+            setTimeout(thinkingProcesso, 3300);
+            Stop = true;
+          }
+          if(Start==false){
+            gameOver();
+          }
           function thinkingProcesso (){
             drawO(Selection)
             MentalMap[Selection].Activated = false;
@@ -347,9 +355,6 @@ function game () {
             Turno = false;
             Stop = false;
             aLittleWatch();
-            if(Start==false){
-              gameOver();
-            }
             game();
           }
       }
@@ -358,6 +363,7 @@ function game () {
           Lienzo.addEventListener("click", continuar);
           Stop = true;
           function continuar (click){
+            Lienzo.removeEventListener("click", continuar);
             var Waiting = true;
             Click[0]=click.layerX;
             Click[1]=click.layerY;
@@ -367,19 +373,22 @@ function game () {
                 MentalMap[Retorno1].Activated = false;
                 MentalMap[Retorno1].Status = "X";
                 Turno = true;
-                aLittleWatch();
                 Stop = false;
+                if(Ended != true){
+                  aLittleWatch();
+                }
                 if(Start==false){
                   gameOver();
                   Stop = true;
+                  game ();
                 }
-                game ();
             }
           }
       }else{
         Lienzo.addEventListener("click", continues);
         Stop = true;
         function continues (click){
+          Lienzo.removeEventListener("click", continuar);
           var Waiting = true;
           Click[0] = click.layerX;
           Click[1] = click.layerY;
@@ -389,13 +398,14 @@ function game () {
               MentalMap[Retorno1].Activated = false;
               MentalMap[Retorno1].Status = "O";
               Turno = true;
-              Stop = false;
-              aLittleWatch();
+              if(Ended != true){
+                aLittleWatch();
+                game ();
+              }
               if(Start==false){
                 gameOver();
                 Stop = true;
               }
-              game ();
           }
         }
       }
@@ -1353,19 +1363,19 @@ function aLittleWatch (){
           case 0:
               if((MentalMap[1].Status == "O")&&(MentalMap[2].Status == "O")){
                 animation("h0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[6].Status == "O")){
                 animation("v0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[8].Status == "O")){
                 animation("d1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
@@ -1373,13 +1383,13 @@ function aLittleWatch (){
           case 1:
               if((MentalMap[0].Status == "O")&&(MentalMap[2].Status == "O")){
                 animation("h0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[7].Status == "O")&&(MentalMap[4].Status == "O")){
                 animation("v1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
@@ -1387,19 +1397,19 @@ function aLittleWatch (){
           case 2:
             if((MentalMap[4].Status == "O")&&(MentalMap[6].Status == "O")){
               animation("d2");
-              Stop = true;
+              Ended = true;
               Start = false;
               judgeDesition("O");
             }
             if((MentalMap[1].Status == "O")&&(MentalMap[0].Status == "O")){
               animation("h0");
-              Stop = true;
+              Ended = true;
               Start = false;
               judgeDesition("O");
             }
             if((MentalMap[3].Status == "O")&&(MentalMap[8].Status == "O")){
               animation("v2");
-              Stop = true;
+              Ended = true;
               Start = false;
               judgeDesition("O");
             }
@@ -1407,13 +1417,13 @@ function aLittleWatch (){
           case 3:
               if((MentalMap[4].Status == "O")&&(MentalMap[5].Status == "O")){
                 animation("h1");
-                Stop = true;
+                Ended= true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[2].Status == "O")&&(MentalMap[8].Status == "-")){
                 animation("v1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
@@ -1421,25 +1431,25 @@ function aLittleWatch (){
           case 4:
               if((MentalMap[0].Status == "O")&&(MentalMap[8].Status == "O")){
                 animation("d1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[1].Status == "O")&&(MentalMap[7].Status == "O")){
                 animation("v1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[2].Status == "O")&&(MentalMap[6].Status == "O")){
                 animation("d2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[3].Status == "O")){
                 animation("h1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
@@ -1447,13 +1457,13 @@ function aLittleWatch (){
             case 5:
               if((MentalMap[0].Status == "O")&&(MentalMap[6].Status == "O")){
                 animation("v0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[3].Status == "O")){
                 animation("h1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
@@ -1461,19 +1471,19 @@ function aLittleWatch (){
             case 6:
               if((MentalMap[7].Status == "O")&&(MentalMap[8].Status == "O")){
                 animation("h2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[0].Status == "O")){
                 animation("v0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[2].Status == "O")){
                 animation("d2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
@@ -1481,13 +1491,13 @@ function aLittleWatch (){
             case 7:
               if((MentalMap[6].Status == "O")&&(MentalMap[8].Status == "O")){
                 animation("h2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[1].Status == "O")){
                 animation("v1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
@@ -1495,19 +1505,19 @@ function aLittleWatch (){
             case 8:
               if((MentalMap[7].Status == "O")&&(MentalMap[6].Status == "O")){
                 animation("v2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[0].Status == "O")){
                 animation("d1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
               if((MentalMap[3].Status == "O")&&(MentalMap[2].Status == "O")){
                 animation("v2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("O");
               }
@@ -1519,19 +1529,19 @@ function aLittleWatch (){
           case 0:
               if((MentalMap[1].Status == "X")&&(MentalMap[2].Status == "X")){
                 animation("h0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[6].Status == "X")){
                 animation("v0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[8].Status == "X")){
                 animation("d1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
@@ -1539,13 +1549,13 @@ function aLittleWatch (){
           case 1:
               if((MentalMap[0].Status == "X")&&(MentalMap[2].Status == "X")){
                 animation("h0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[7].Status == "X")&&(MentalMap[4].Status == "X")){
                 animation("v1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
@@ -1553,19 +1563,19 @@ function aLittleWatch (){
           case 2:
             if((MentalMap[4].Status == "X")&&(MentalMap[6].Status == "X")){
               animation("d2");
-              Stop = true;
+              Ended = true;
               Start = false;
               judgeDesition("X");
             }
             if((MentalMap[1].Status == "X")&&(MentalMap[0].Status == "X")){
               animation("h0");
-              Stop = true;
+              Ended = true;
               Start = false;
               judgeDesition("X");
             }
             if((MentalMap[3].Status == "X")&&(MentalMap[8].Status == "X")){
               animation("v2");
-              Stop = true;
+              Ended = true;
               Start = false;
               judgeDesition("X");
             }
@@ -1573,13 +1583,13 @@ function aLittleWatch (){
           case 3:
               if((MentalMap[4].Status == "X")&&(MentalMap[5].Status == "X")){
                 animation("h1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[2].Status == "X")&&(MentalMap[8].Status == "-")){
                 animation("v1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
@@ -1587,25 +1597,25 @@ function aLittleWatch (){
           case 4:
               if((MentalMap[0].Status == "X")&&(MentalMap[8].Status == "X")){
                 animation("d1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[1].Status == "X")&&(MentalMap[7].Status == "X")){
                 animation("v1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[2].Status == "X")&&(MentalMap[6].Status == "X")){
                 animation("d2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[3].Status == "X")){
                 animation("h1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
@@ -1613,13 +1623,13 @@ function aLittleWatch (){
             case 5:
               if((MentalMap[0].Status == "X")&&(MentalMap[6].Status == "X")){
                 animation("v0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[3].Status == "X")){
                 animation("h1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
@@ -1627,19 +1637,19 @@ function aLittleWatch (){
             case 6:
               if((MentalMap[7].Status == "X")&&(MentalMap[8].Status == "X")){
                 animation("h2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[0].Status == "X")){
                 animation("v0");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[2].Status == "X")){
                 animation("d2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
@@ -1647,13 +1657,13 @@ function aLittleWatch (){
             case 7:
               if((MentalMap[6].Status == "X")&&(MentalMap[8].Status == "X")){
                 animation("h2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[1].Status == "X")){
                 animation("v1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
@@ -1661,19 +1671,19 @@ function aLittleWatch (){
             case 8:
               if((MentalMap[7].Status == "X")&&(MentalMap[6].Status == "X")){
                 animation("v2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[0].Status == "X")){
                 animation("d1");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
               if((MentalMap[3].Status == "X")&&(MentalMap[2].Status == "X")){
                 animation("v2");
-                Stop = true;
+                Ended = true;
                 Start = false;
                 judgeDesition("X");
               }
