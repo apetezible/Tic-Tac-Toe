@@ -376,11 +376,11 @@ function game () {
                 Stop = false;
                 if(Ended != true){
                   aLittleWatch();
+                  game ();
                 }
                 if(Start==false){
                   gameOver();
                   Stop = true;
-                  game ();
                 }
             }
           }
@@ -1362,36 +1362,41 @@ function aLittleWatch (){
         switch (i) {
           case 0:
               if((MentalMap[1].Status == "O")&&(MentalMap[2].Status == "O")){
-                animation("h0");
+                animation("h2");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[6].Status == "O")){
                 animation("v0");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[8].Status == "O")){
                 animation("d1");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
             break;
           case 1:
               if((MentalMap[0].Status == "O")&&(MentalMap[2].Status == "O")){
-                animation("h0");
+                animation("h2");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[7].Status == "O")&&(MentalMap[4].Status == "O")){
                 animation("v1");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               break;
           case 2:
@@ -1400,18 +1405,21 @@ function aLittleWatch (){
               Ended = true;
               Start = false;
               judgeDesition("O");
+              i = 9;
             }
             if((MentalMap[1].Status == "O")&&(MentalMap[0].Status == "O")){
-              animation("h0");
+              animation("h2");
               Ended = true;
               Start = false;
               judgeDesition("O");
+              i = 9;
             }
             if((MentalMap[3].Status == "O")&&(MentalMap[8].Status == "O")){
               animation("v2");
               Ended = true;
               Start = false;
               judgeDesition("O");
+              i = 9;
             }
             break;
           case 3:
@@ -1420,12 +1428,14 @@ function aLittleWatch (){
                 Ended= true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[2].Status == "O")&&(MentalMap[8].Status == "-")){
-                animation("v1");
+                animation("v2");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
             break;
           case 4:
@@ -1434,24 +1444,28 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[1].Status == "O")&&(MentalMap[7].Status == "O")){
                 animation("v1");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[2].Status == "O")&&(MentalMap[6].Status == "O")){
                 animation("d2");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[3].Status == "O")){
                 animation("h1");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               break;
             case 5:
@@ -1460,66 +1474,76 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[3].Status == "O")){
                 animation("h1");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               break;
             case 6:
               if((MentalMap[7].Status == "O")&&(MentalMap[8].Status == "O")){
-                animation("h2");
+                animation("h0");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[0].Status == "O")){
                 animation("v0");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[2].Status == "O")){
                 animation("d2");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               break;
             case 7:
               if((MentalMap[6].Status == "O")&&(MentalMap[8].Status == "O")){
-                animation("h2");
+                animation("h0");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[1].Status == "O")){
                 animation("v1");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               break;
             case 8:
               if((MentalMap[7].Status == "O")&&(MentalMap[6].Status == "O")){
-                animation("v2");
+                animation("h2");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[0].Status == "O")){
                 animation("d1");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               if((MentalMap[3].Status == "O")&&(MentalMap[2].Status == "O")){
                 animation("v2");
                 Ended = true;
                 Start = false;
                 judgeDesition("O");
+                i = 9;
               }
               break;
         }
@@ -1532,18 +1556,21 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[6].Status == "X")){
                 animation("v0");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[8].Status == "X")){
-                animation("d1");
+                animation("d2");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
             break;
           case 1:
@@ -1552,32 +1579,37 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[7].Status == "X")&&(MentalMap[4].Status == "X")){
                 animation("v1");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               break;
           case 2:
             if((MentalMap[4].Status == "X")&&(MentalMap[6].Status == "X")){
-              animation("d2");
+              animation("d1");
               Ended = true;
               Start = false;
               judgeDesition("X");
+              i = 9;
             }
             if((MentalMap[1].Status == "X")&&(MentalMap[0].Status == "X")){
               animation("h0");
               Ended = true;
               Start = false;
               judgeDesition("X");
+              i = 9;
             }
             if((MentalMap[3].Status == "X")&&(MentalMap[8].Status == "X")){
               animation("v2");
               Ended = true;
               Start = false;
               judgeDesition("X");
+              i = 9;
             }
             break;
           case 3:
@@ -1586,38 +1618,44 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[2].Status == "X")&&(MentalMap[8].Status == "-")){
-                animation("v1");
+                animation("v2");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
             break;
           case 4:
               if((MentalMap[0].Status == "X")&&(MentalMap[8].Status == "X")){
-                animation("d1");
+                animation("d2");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[1].Status == "X")&&(MentalMap[7].Status == "X")){
                 animation("v1");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[2].Status == "X")&&(MentalMap[6].Status == "X")){
-                animation("d2");
+                animation("d1");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[3].Status == "X")){
                 animation("h1");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               break;
             case 5:
@@ -1626,12 +1664,14 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[3].Status == "X")){
                 animation("h1");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               break;
             case 6:
@@ -1640,18 +1680,21 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[0].Status == "X")){
                 animation("v0");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[2].Status == "X")){
-                animation("d2");
+                animation("d1");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               break;
             case 7:
@@ -1660,12 +1703,14 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[1].Status == "X")){
                 animation("v1");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               break;
             case 8:
@@ -1674,18 +1719,21 @@ function aLittleWatch (){
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[0].Status == "X")){
-                animation("d1");
+                animation("d2");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               if((MentalMap[3].Status == "X")&&(MentalMap[2].Status == "X")){
                 animation("v2");
                 Ended = true;
                 Start = false;
                 judgeDesition("X");
+                i = 9;
               }
               break;
         }
@@ -1724,7 +1772,7 @@ function animation(Orientation){
       BackgoundSounds[7].play();
       break;
     case "d2":
-      animate(3, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width), ((5/42)*Lienzo.width)+25);
+      animate(3, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width)-25-17, ((5/42)*Lienzo.width));
       BackgoundSounds[8].play();
       break;
     default:
@@ -1915,7 +1963,7 @@ function animate (Code, X, Y){
     var TimeInterval = setInterval(function picturing(){
           PapelPlano.drawImage(Animations[Code][Counter], X, Y);
           Counter++;
-          if(Counter>=Animations[0].length){
+          if(Counter>=Animations[Code].length){
             clearInterval(TimeInterval);
           }
         }, 40);
