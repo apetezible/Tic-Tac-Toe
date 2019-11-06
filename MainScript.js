@@ -1,5 +1,5 @@
-
-
+var Winner = "No one";
+var Waiting = true;
 var Turno = false;
 var Ct = 0;
 var Casilla0 = {Status:"-", Activated:true};
@@ -62,6 +62,10 @@ var Diagonal2 = document.getElementById("d2");
 BackgoundSounds.push(Diagonal2);
 var Tied = document.getElementById("tied");
 BackgoundSounds.push(Tied);
+var YourTeamWon = document.getElementById("your_team_won");
+BackgoundSounds.push(YourTeamWon);
+var YourTeamLost = document.getElementById("your_team_lost");
+BackgoundSounds.push(YourTeamLost);
 
 Boton2.addEventListener("click",interface);
 
@@ -223,6 +227,7 @@ function dados() {
         drawLine("#f22310", ((10/21)*Lienzo.width)+((1/7)*Lienzo.width), 1, ((10/21)*Lienzo.width)+((1/7)*Lienzo.width), ((5/7)*Lienzo.width), 15, PapelPlano);
         drawLine("#f22310", ((1/7)*Lienzo.width), ((5/21)*Lienzo.width), ((6/7)*Lienzo.width), ((5/21)*Lienzo.width), 15, PapelPlano);
         drawLine("#f22310", ((1/7)*Lienzo.width), ((10/21)*Lienzo.width), ((6/7)*Lienzo.width), ((10/21)*Lienzo.width), 15, PapelPlano);
+        Boton2.disabled = true;
         game();
       }
 
@@ -335,8 +340,8 @@ function game () {
             Turno = false;
             Stop = false;
             aLittleWatch();
-              game();
-            }
+            game();
+          }
       }else{
           aLittleWatchForO();
           BigArray = aLittleWatchForO();
@@ -363,12 +368,12 @@ function game () {
           Lienzo.addEventListener("click", continuar);
           Stop = true;
           function continuar (click){
-            Lienzo.removeEventListener("click", continuar);
-            var Waiting = true;
+            Stop = true;
             Click[0]=click.layerX;
             Click[1]=click.layerY;
             Retorno1 = dico (Click);
             if (Retorno1!="null"){
+                Lienzo.removeEventListener("click", continuar);
                 drawX(Retorno1);
                 MentalMap[Retorno1].Activated = false;
                 MentalMap[Retorno1].Status = "X";
@@ -376,6 +381,7 @@ function game () {
                 Stop = false;
                 if(Ended != true){
                   aLittleWatch();
+                  Stop = false;
                   game ();
                 }
                 if(Start==false){
@@ -388,18 +394,18 @@ function game () {
         Lienzo.addEventListener("click", continues);
         Stop = true;
         function continues (click){
-          Lienzo.removeEventListener("click", continuar);
-          var Waiting = true;
           Click[0] = click.layerX;
           Click[1] = click.layerY;
           Retorno1 = dico (Click);
           if (Retorno1!="null"){
+              Lienzo.removeEventListener("click", continues);
               drawO(Retorno1);
               MentalMap[Retorno1].Activated = false;
               MentalMap[Retorno1].Status = "O";
               Turno = true;
               if(Ended != true){
                 aLittleWatch();
+                Stop = false;
                 game ();
               }
               if(Start==false){
@@ -414,7 +420,6 @@ function game () {
 }
 
 function gameOver(){
-  alert ("Well done, quickly... get to an Upgrade Station");
 }
 
 function drawX (Selection){
@@ -1362,187 +1367,187 @@ function aLittleWatch (){
         switch (i) {
           case 0:
               if((MentalMap[1].Status == "O")&&(MentalMap[2].Status == "O")){
+                Winner = "O";
                 animation("h2");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[6].Status == "O")){
+                Winner = "O";
                 animation("v0");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[8].Status == "O")){
+                Winner = "O";
                 animation("d1");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
             break;
           case 1:
               if((MentalMap[0].Status == "O")&&(MentalMap[2].Status == "O")){
+                Winner = "O";
                 animation("h2");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[7].Status == "O")&&(MentalMap[4].Status == "O")){
+                Winner = "O";
                 animation("v1");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               break;
           case 2:
             if((MentalMap[4].Status == "O")&&(MentalMap[6].Status == "O")){
+              Winner = "O";
               animation("d2");
               Ended = true;
               Start = false;
-              judgeDesition("O");
               i = 9;
             }
             if((MentalMap[1].Status == "O")&&(MentalMap[0].Status == "O")){
+              Winner = "O";
               animation("h2");
               Ended = true;
               Start = false;
-              judgeDesition("O");
               i = 9;
             }
             if((MentalMap[3].Status == "O")&&(MentalMap[8].Status == "O")){
+              Winner = "O";
               animation("v2");
               Ended = true;
               Start = false;
-              judgeDesition("O");
               i = 9;
             }
             break;
           case 3:
               if((MentalMap[4].Status == "O")&&(MentalMap[5].Status == "O")){
+                Winner = "O";
                 animation("h1");
                 Ended= true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[2].Status == "O")&&(MentalMap[8].Status == "-")){
+                Winner = "O";
                 animation("v2");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
             break;
           case 4:
               if((MentalMap[0].Status == "O")&&(MentalMap[8].Status == "O")){
+                Winner = "O";
                 animation("d1");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[1].Status == "O")&&(MentalMap[7].Status == "O")){
+                Winner = "O";
                 animation("v1");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[2].Status == "O")&&(MentalMap[6].Status == "O")){
+                Winner = "O";
                 animation("d2");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[3].Status == "O")){
+                Winner = "O";
                 animation("h1");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               break;
             case 5:
               if((MentalMap[0].Status == "O")&&(MentalMap[6].Status == "O")){
+                Winner = "O";
                 animation("v0");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[3].Status == "O")){
+                Winner = "O";
                 animation("h1");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               break;
             case 6:
               if((MentalMap[7].Status == "O")&&(MentalMap[8].Status == "O")){
+                Winner = "O";
                 animation("h0");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[5].Status == "O")&&(MentalMap[0].Status == "O")){
+                Winner = "O";
                 animation("v0");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[2].Status == "O")){
+                Winner = "O";
                 animation("d2");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               break;
             case 7:
               if((MentalMap[6].Status == "O")&&(MentalMap[8].Status == "O")){
+                Winner = "O";
                 animation("h0");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[1].Status == "O")){
+                Winner = "O";
                 animation("v1");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               break;
             case 8:
               if((MentalMap[7].Status == "O")&&(MentalMap[6].Status == "O")){
+                Winner = "O";
                 animation("h2");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[4].Status == "O")&&(MentalMap[0].Status == "O")){
+                Winner = "O";
                 animation("d1");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               if((MentalMap[3].Status == "O")&&(MentalMap[2].Status == "O")){
+                Winner = "O";
                 animation("v2");
                 Ended = true;
                 Start = false;
-                judgeDesition("O");
                 i = 9;
               }
               break;
@@ -1552,187 +1557,210 @@ function aLittleWatch (){
         switch (i) {
           case 0:
               if((MentalMap[1].Status == "X")&&(MentalMap[2].Status == "X")){
+                Winner = "X";
                 animation("h0");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
                 i = 9;
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[6].Status == "X")){
+                Winner = "X";
                 animation("v0");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[8].Status == "X")){
+                Winner = "X";
                 animation("d2");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
             break;
           case 1:
               if((MentalMap[0].Status == "X")&&(MentalMap[2].Status == "X")){
+                Winner = "X";
                 animation("h0");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[7].Status == "X")&&(MentalMap[4].Status == "X")){
+                Winner = "X";
                 animation("v1");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               break;
           case 2:
             if((MentalMap[4].Status == "X")&&(MentalMap[6].Status == "X")){
+              Winner = "X";
               animation("d1");
               Ended = true;
               Start = false;
-              judgeDesition("X");
+              Winner = "X";
               i = 9;
             }
             if((MentalMap[1].Status == "X")&&(MentalMap[0].Status == "X")){
+              Winner = "X";
               animation("h0");
               Ended = true;
               Start = false;
-              judgeDesition("X");
+              Winner = "X";
               i = 9;
             }
             if((MentalMap[3].Status == "X")&&(MentalMap[8].Status == "X")){
+              Winner = "X";
               animation("v2");
               Ended = true;
               Start = false;
-              judgeDesition("X");
+              Winner = "X";
               i = 9;
             }
             break;
           case 3:
               if((MentalMap[4].Status == "X")&&(MentalMap[5].Status == "X")){
+                Winner = "X";
                 animation("h1");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[2].Status == "X")&&(MentalMap[8].Status == "-")){
+                Winner = "X";
                 animation("v2");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
             break;
           case 4:
               if((MentalMap[0].Status == "X")&&(MentalMap[8].Status == "X")){
+                Winner = "X";
                 animation("d2");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[1].Status == "X")&&(MentalMap[7].Status == "X")){
+                Winner = "X";
                 animation("v1");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[2].Status == "X")&&(MentalMap[6].Status == "X")){
+                Winner = "X";
                 animation("d1");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[3].Status == "X")){
+                Winner = "X";
                 animation("h1");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               break;
             case 5:
               if((MentalMap[0].Status == "X")&&(MentalMap[6].Status == "X")){
+                Winner = "X";
                 animation("v0");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[3].Status == "X")){
+                Winner = "X";
                 animation("h1");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               break;
             case 6:
               if((MentalMap[7].Status == "X")&&(MentalMap[8].Status == "X")){
+                Winner = "X";
                 animation("h2");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[5].Status == "X")&&(MentalMap[0].Status == "X")){
+                Winner = "X";
                 animation("v0");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[2].Status == "X")){
+                Winner = "X";
                 animation("d1");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               break;
             case 7:
               if((MentalMap[6].Status == "X")&&(MentalMap[8].Status == "X")){
+                Winner = "X";
                 animation("h2");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[1].Status == "X")){
+                Winner = "X";
                 animation("v1");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               break;
             case 8:
               if((MentalMap[7].Status == "X")&&(MentalMap[6].Status == "X")){
+                Winner = "X";
                 animation("v2");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[4].Status == "X")&&(MentalMap[0].Status == "X")){
+                Winner = "X";
                 animation("d2");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               if((MentalMap[3].Status == "X")&&(MentalMap[2].Status == "X")){
+                Winner = "X";
                 animation("v2");
                 Ended = true;
                 Start = false;
-                judgeDesition("X");
+                Winner = "X";
                 i = 9;
               }
               break;
@@ -1744,35 +1772,35 @@ function aLittleWatch (){
 function animation(Orientation){
   switch (Orientation) {
     case "h0":
-      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width)), ((2/21)*Lienzo.width));
+      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width)), ((2/21)*Lienzo.width), 24);
       BackgoundSounds[4].play();
       break;
     case "h1":
-      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width)), (((2/21)*Lienzo.width)+((10/42)*Lienzo.width)));
+      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width)-5), (((2/21)*Lienzo.width)+((10/42)*Lienzo.width))-4, 24);
       BackgoundSounds[5].play();
       break;
     case "h2":
-      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width)), (((2/21)*Lienzo.width)+((20/42)*Lienzo.width)));
+      animate(0, (((1/7)*Lienzo.width)+((10/294)*Lienzo.width))-11, (((2/21)*Lienzo.width)+((20/42)*Lienzo.width)), 24);
       BackgoundSounds[6].play();
       break;
     case "v0":
-      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width)), ((10/294)*Lienzo.width));
+      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width))-5, ((10/294)*Lienzo.width), 24);
       BackgoundSounds[4].play();
       break;
     case "v1":
-      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width))+((10/42)*Lienzo.width), ((10/294)*Lienzo.width));
+      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width))+((10/42)*Lienzo.width)-5, ((10/294)*Lienzo.width)-5, 24);
       BackgoundSounds[5].play();
       break;
     case "v2":
-      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width))+((20/42)*Lienzo.width), ((10/294)*Lienzo.width));
+      animate(1, (((1/7)*Lienzo.width)+((2/21)*Lienzo.width))+((20/42)*Lienzo.width), ((10/294)*Lienzo.width), 24);
       BackgoundSounds[6].play();
       break;
     case "d1":
-      animate(2, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width), ((5/42)*Lienzo.width));
+      animate(2, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width), ((5/42)*Lienzo.width), 24);
       BackgoundSounds[7].play();
       break;
     case "d2":
-      animate(3, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width)-25-17, ((5/42)*Lienzo.width));
+      animate(3, ((1/7)*Lienzo.width)+((5/42)*Lienzo.width)-25-17, ((5/42)*Lienzo.width), 24);
       BackgoundSounds[8].play();
       break;
     default:
@@ -1903,11 +1931,333 @@ while (DiagonalRightStrike < 17){
   DiagonalRightStrike ++;
 }
 
+var Victory = [];
+
+Victory.push(builder("anims/Victory/Victory0000.png"));
+Victory.push(builder("anims/Victory/Victory0001.png"));
+Victory.push(builder("anims/Victory/Victory0002.png"));
+Victory.push(builder("anims/Victory/Victory0003.png"));
+Victory.push(builder("anims/Victory/Victory0004.png"));
+Victory.push(builder("anims/Victory/Victory0005.png"));
+Victory.push(builder("anims/Victory/Victory0006.png"));
+Victory.push(builder("anims/Victory/Victory0007.png"));
+Victory.push(builder("anims/Victory/Victory0008.png"));
+Victory.push(builder("anims/Victory/Victory0009.png"));
+Victory.push(builder("anims/Victory/Victory0010.png"));
+Victory.push(builder("anims/Victory/Victory0011.png"));
+Victory.push(builder("anims/Victory/Victory0012.png"));
+Victory.push(builder("anims/Victory/Victory0013.png"));
+Victory.push(builder("anims/Victory/Victory0014.png"));
+Victory.push(builder("anims/Victory/Victory0015.png"));
+Victory.push(builder("anims/Victory/Victory0016.png"));
+Victory.push(builder("anims/Victory/Victory0017.png"));
+Victory.push(builder("anims/Victory/Victory0018.png"));
+Victory.push(builder("anims/Victory/Victory0019.png"));
+Victory.push(builder("anims/Victory/Victory0020.png"));
+Victory.push(builder("anims/Victory/Victory0021.png"));
+Victory.push(builder("anims/Victory/Victory0022.png"));
+Victory.push(builder("anims/Victory/Victory0023.png"));
+Victory.push(builder("anims/Victory/Victory0024.png"));
+Victory.push(builder("anims/Victory/Victory0025.png"));
+Victory.push(builder("anims/Victory/Victory0026.png"));
+Victory.push(builder("anims/Victory/Victory0027.png"));
+Victory.push(builder("anims/Victory/Victory0028.png"));
+Victory.push(builder("anims/Victory/Victory0029.png"));
+Victory.push(builder("anims/Victory/Victory0030.png"));
+Victory.push(builder("anims/Victory/Victory0031.png"));
+Victory.push(builder("anims/Victory/Victory0032.png"));
+Victory.push(builder("anims/Victory/Victory0033.png"));
+Victory.push(builder("anims/Victory/Victory0034.png"));
+Victory.push(builder("anims/Victory/Victory0035.png"));
+Victory.push(builder("anims/Victory/Victory0036.png"));
+Victory.push(builder("anims/Victory/Victory0037.png"));
+Victory.push(builder("anims/Victory/Victory0038.png"));
+Victory.push(builder("anims/Victory/Victory0039.png"));
+Victory.push(builder("anims/Victory/Victory0040.png"));
+Victory.push(builder("anims/Victory/Victory0041.png"));
+Victory.push(builder("anims/Victory/Victory0042.png"));
+Victory.push(builder("anims/Victory/Victory0043.png"));
+Victory.push(builder("anims/Victory/Victory0044.png"));
+Victory.push(builder("anims/Victory/Victory0045.png"));
+Victory.push(builder("anims/Victory/Victory0046.png"));
+Victory.push(builder("anims/Victory/Victory0047.png"));
+Victory.push(builder("anims/Victory/Victory0048.png"));
+Victory.push(builder("anims/Victory/Victory0049.png"));
+Victory.push(builder("anims/Victory/Victory0050.png"));
+Victory.push(builder("anims/Victory/Victory0051.png"));
+Victory.push(builder("anims/Victory/Victory0052.png"));
+Victory.push(builder("anims/Victory/Victory0053.png"));
+Victory.push(builder("anims/Victory/Victory0054.png"));
+Victory.push(builder("anims/Victory/Victory0055.png"));
+Victory.push(builder("anims/Victory/Victory0056.png"));
+Victory.push(builder("anims/Victory/Victory0057.png"));
+Victory.push(builder("anims/Victory/Victory0058.png"));
+Victory.push(builder("anims/Victory/Victory0059.png"));
+Victory.push(builder("anims/Victory/Victory0060.png"));
+Victory.push(builder("anims/Victory/Victory0061.png"));
+Victory.push(builder("anims/Victory/Victory0062.png"));
+Victory.push(builder("anims/Victory/Victory0063.png"));
+Victory.push(builder("anims/Victory/Victory0064.png"));
+Victory.push(builder("anims/Victory/Victory0065.png"));
+Victory.push(builder("anims/Victory/Victory0066.png"));
+Victory.push(builder("anims/Victory/Victory0067.png"));
+Victory.push(builder("anims/Victory/Victory0068.png"));
+Victory.push(builder("anims/Victory/Victory0069.png"));
+Victory.push(builder("anims/Victory/Victory0070.png"));
+Victory.push(builder("anims/Victory/Victory0071.png"));
+Victory.push(builder("anims/Victory/Victory0072.png"));
+Victory.push(builder("anims/Victory/Victory0073.png"));
+Victory.push(builder("anims/Victory/Victory0074.png"));
+Victory.push(builder("anims/Victory/Victory0075.png"));
+Victory.push(builder("anims/Victory/Victory0076.png"));
+Victory.push(builder("anims/Victory/Victory0077.png"));
+Victory.push(builder("anims/Victory/Victory0078.png"));
+Victory.push(builder("anims/Victory/Victory0079.png"));
+Victory.push(builder("anims/Victory/Victory0080.png"));
+Victory.push(builder("anims/Victory/Victory0081.png"));
+Victory.push(builder("anims/Victory/Victory0082.png"));
+Victory.push(builder("anims/Victory/Victory0083.png"));
+Victory.push(builder("anims/Victory/Victory0084.png"));
+Victory.push(builder("anims/Victory/Victory0085.png"));
+Victory.push(builder("anims/Victory/Victory0086.png"));
+Victory.push(builder("anims/Victory/Victory0087.png"));
+Victory.push(builder("anims/Victory/Victory0088.png"));
+Victory.push(builder("anims/Victory/Victory0089.png"));
+Victory.push(builder("anims/Victory/Victory0090.png"));
+Victory.push(builder("anims/Victory/Victory0091.png"));
+Victory.push(builder("anims/Victory/Victory0092.png"));
+Victory.push(builder("anims/Victory/Victory0093.png"));
+Victory.push(builder("anims/Victory/Victory0094.png"));
+Victory.push(builder("anims/Victory/Victory0095.png"));
+Victory.push(builder("anims/Victory/Victory0096.png"));
+Victory.push(builder("anims/Victory/Victory0097.png"));
+Victory.push(builder("anims/Victory/Victory0098.png"));
+Victory.push(builder("anims/Victory/Victory0099.png"));
+Victory.push(builder("anims/Victory/Victory0100.png"));
+Victory.push(builder("anims/Victory/Victory0101.png"));
+Victory.push(builder("anims/Victory/Victory0102.png"));
+Victory.push(builder("anims/Victory/Victory0103.png"));
+Victory.push(builder("anims/Victory/Victory0104.png"));
+Victory.push(builder("anims/Victory/Victory0105.png"));
+Victory.push(builder("anims/Victory/Victory0106.png"));
+Victory.push(builder("anims/Victory/Victory0107.png"));
+Victory.push(builder("anims/Victory/Victory0108.png"));
+Victory.push(builder("anims/Victory/Victory0109.png"));
+Victory.push(builder("anims/Victory/Victory0110.png"));
+Victory.push(builder("anims/Victory/Victory0111.png"));
+Victory.push(builder("anims/Victory/Victory0112.png"));
+Victory.push(builder("anims/Victory/Victory0113.png"));
+Victory.push(builder("anims/Victory/Victory0114.png"));
+Victory.push(builder("anims/Victory/Victory0115.png"));
+Victory.push(builder("anims/Victory/Victory0116.png"));
+Victory.push(builder("anims/Victory/Victory0117.png"));
+Victory.push(builder("anims/Victory/Victory0118.png"));
+Victory.push(builder("anims/Victory/Victory0119.png"));
+Victory.push(builder("anims/Victory/Victory0120.png"));
+Victory.push(builder("anims/Victory/Victory0121.png"));
+Victory.push(builder("anims/Victory/Victory0122.png"));
+Victory.push(builder("anims/Victory/Victory0123.png"));
+Victory.push(builder("anims/Victory/Victory0124.png"));
+Victory.push(builder("anims/Victory/Victory0125.png"));
+Victory.push(builder("anims/Victory/Victory0126.png"));
+Victory.push(builder("anims/Victory/Victory0127.png"));
+Victory.push(builder("anims/Victory/Victory0128.png"));
+Victory.push(builder("anims/Victory/Victory0129.png"));
+Victory.push(builder("anims/Victory/Victory0130.png"));
+Victory.push(builder("anims/Victory/Victory0131.png"));
+Victory.push(builder("anims/Victory/Victory0132.png"));
+Victory.push(builder("anims/Victory/Victory0133.png"));
+Victory.push(builder("anims/Victory/Victory0134.png"));
+Victory.push(builder("anims/Victory/Victory0135.png"));
+Victory.push(builder("anims/Victory/Victory0136.png"));
+Victory.push(builder("anims/Victory/Victory0137.png"));
+Victory.push(builder("anims/Victory/Victory0138.png"));
+Victory.push(builder("anims/Victory/Victory0139.png"));
+Victory.push(builder("anims/Victory/Victory0140.png"));
+Victory.push(builder("anims/Victory/Victory0141.png"));
+Victory.push(builder("anims/Victory/Victory0142.png"));
+Victory.push(builder("anims/Victory/Victory0143.png"));
+Victory.push(builder("anims/Victory/Victory0144.png"));
+Victory.push(builder("anims/Victory/Victory0145.png"));
+Victory.push(builder("anims/Victory/Victory0146.png"));
+Victory.push(builder("anims/Victory/Victory0147.png"));
+Victory.push(builder("anims/Victory/Victory0148.png"));
+Victory.push(builder("anims/Victory/Victory0149.png"));
+
+var LoadedVictoryFrames = 0;
+var VictoryStrike = 0;
+while (VictoryStrike < 17){
+  Victory[VictoryStrike].addEventListener("load", viLoader);
+  VictoryStrike ++;
+}
+
+var YouFailed = [];
+
+YouFailed.push(builder("anims/YouFailed/YouFailed0000.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0001.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0002.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0003.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0004.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0005.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0006.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0007.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0008.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0009.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0010.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0011.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0012.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0013.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0014.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0015.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0016.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0017.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0018.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0019.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0020.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0021.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0022.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0023.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0024.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0025.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0026.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0027.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0028.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0029.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0030.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0031.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0032.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0033.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0034.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0035.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0036.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0037.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0038.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0039.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0040.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0041.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0042.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0043.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0044.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0045.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0046.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0047.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0048.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0049.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0050.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0051.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0052.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0053.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0054.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0055.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0056.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0057.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0058.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0059.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0060.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0061.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0062.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0063.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0064.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0065.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0066.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0067.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0068.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0069.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0070.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0071.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0072.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0073.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0074.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0075.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0076.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0077.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0078.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0079.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0080.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0081.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0082.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0083.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0084.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0085.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0086.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0087.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0088.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0089.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0090.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0091.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0092.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0093.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0094.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0095.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0096.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0097.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0098.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0099.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0100.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0101.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0102.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0103.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0104.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0105.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0106.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0107.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0108.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0109.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0110.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0111.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0112.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0113.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0114.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0115.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0116.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0117.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0118.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0119.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0120.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0121.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0122.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0123.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0124.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0125.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0126.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0127.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0128.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0129.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0130.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0131.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0132.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0133.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0134.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0135.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0136.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0137.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0138.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0139.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0140.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0141.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0142.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0143.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0144.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0145.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0146.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0147.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0148.png"));
+YouFailed.push(builder("anims/YouFailed/YouFailed0149.png"));
+
+var LoadedYouFailedFrames = 0;
+var YouFailedStrike = 0;
+while (YouFailedStrike < 17){
+  YouFailed[YouFailedStrike].addEventListener("load", yFLoader);
+  YouFailedStrike ++;
+}
+
 var Animations = [];
 Animations.push(MarkingALine);
 Animations.push(MarkingAVerticalLine);
 Animations.push(MarkingADiagonalLineLeft);
 Animations.push(MarkingADiagonalLineRight);
+Animations.push(Victory);
+Animations.push(YouFailed);
 
 function loader(){
   LoadedHorizontalFrames = LoadedHorizontalFrames+1;
@@ -1925,7 +2275,15 @@ function dRLoader(){
   LoadedDiagonalRightFrames = LoadedDiagonalRightFrames+1;
 }
 
-function animate (Code, X, Y){
+function viLoader(){
+  LoadedVictoryFrames = LoadedVictoryFrames+1;
+}
+
+function yFLoader(){
+  LoadedYouFailedFrames = LoadedYouFailedFrames+1;
+}
+
+function animate (Code, X, Y, FrameRate){
 
   if (Code == 0){
     while(LoadedHorizontalFrames != Animations[Code].length){
@@ -1957,31 +2315,38 @@ function animate (Code, X, Y){
 
   Counter = 0;
 
-  framing(Code, X, Y);
+  framing(Code, X, Y, FrameRate);
 
-  function framing(Code, X, Y){
+  function framing(Code, X, Y, FrameRate){
     var TimeInterval = setInterval(function picturing(){
           PapelPlano.drawImage(Animations[Code][Counter], X, Y);
           Counter++;
           if(Counter>=Animations[Code].length){
             clearInterval(TimeInterval);
+            if((Code != 4)&&(Code != 5)){
+              judgeDesition(Winner);
+            }
           }
-        }, 40);
+        }, Math.ceil(1000/FrameRate));
   }
 }
 
 function judgeDesition(Winner){
   if (Winner == "O"){
     if(Primero == "PC"){
-      alert("///MENSAJE DEL ÁRBITRO///\nGana el Jugador!!!")
+      animate(4, ((1/7)*Lienzo.width), ((5/21)*Lienzo.width)-51, 30);
+      BackgoundSounds[10].play();
     }else{
-      alert("///MENSAJE DEL ÁRBITRO///\nGana el Cerebro Electrónico!!!")
+      animate(5, ((1/7)*Lienzo.width)+51, ((5/21)*Lienzo.width)-51, 30);
+      BackgoundSounds[11].play();
     }
   }else{
     if(Primero == "PC"){
-      alert("///MENSAJE DEL ÁRBITRO///\nGana el Cerebro Electrónico!!!")
+      animate(5, ((1/7)*Lienzo.width)+51, ((5/21)*Lienzo.width)-51, 30);
+      BackgoundSounds[11].play();
     }else{
-      alert("///MENSAJE DEL ÁRBITRO///\nGana el Jugador!!!")
+        animate(4, ((1/7)*Lienzo.width), ((5/21)*Lienzo.width)-51, 30);
+        BackgoundSounds[10].play();
     }
   }
 }
