@@ -2251,6 +2251,27 @@ while (YouFailedStrike < 17){
   YouFailedStrike ++;
 }
 
+var Loading = [];
+
+Loading.push(builder("anims/Loading/frame_00_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_01_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_02_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_03_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_04_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_05_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_06_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_07_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_08_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_09_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_10_delay-0.1s.png"));
+Loading.push(builder("anims/Loading/frame_11_delay-0.1s.png"));
+var LoadedLoadingFrames = 0;
+var LoadingStrike = 0;
+while (LoadingStrike <= 11){
+  Loading[LoadingStrike].addEventListener("load", lLoader);
+  LoadingStrike ++;
+}
+
 var Animations = [];
 Animations.push(MarkingALine);
 Animations.push(MarkingAVerticalLine);
@@ -2258,6 +2279,7 @@ Animations.push(MarkingADiagonalLineLeft);
 Animations.push(MarkingADiagonalLineRight);
 Animations.push(Victory);
 Animations.push(YouFailed);
+Animations.push(Loading);
 
 function loader(){
   LoadedHorizontalFrames = LoadedHorizontalFrames+1;
@@ -2281,6 +2303,10 @@ function viLoader(){
 
 function yFLoader(){
   LoadedYouFailedFrames = LoadedYouFailedFrames+1;
+}
+
+function lLoader(){
+  LoadedLoadingFrames++;
 }
 
 function animate (Code, X, Y, FrameRate){
@@ -2323,14 +2349,14 @@ function animate (Code, X, Y, FrameRate){
           Counter++;
           if(Counter>=Animations[Code].length){
             clearInterval(TimeInterval);
-            if((Code != 4)&&(Code != 5)){
+            if((Code != 4)&&(Code != 5)&&(Code != 6)){
               judgeDesition(Winner);
             }
           }
         }, Math.ceil(1000/FrameRate));
   }
 }
-
+setTimeout(animate(6, ((Lienzo.width)/2)-33, ((Lienzo.height)/16), 10), 120);
 function judgeDesition(Winner){
   if (Winner == "O"){
     if(Primero == "PC"){
