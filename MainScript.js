@@ -2356,7 +2356,9 @@ function animate (Code, X, Y, FrameRate){
         }, Math.ceil(1000/FrameRate));
   }
 }
-setTimeout(animate(6, ((Lienzo.width)/2)-33, ((Lienzo.height)/16), 10), 120);
+setInterval(function loading(){
+  animate(6, ((Lienzo.width)/2)-33, ((Lienzo.height)/16), 10);
+}, 120);
 function judgeDesition(Winner){
   if (Winner == "O"){
     if(Primero == "PC"){
